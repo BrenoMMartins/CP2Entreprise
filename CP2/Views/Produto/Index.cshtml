@@ -1,0 +1,63 @@
+﻿@model List<Produto>
+
+@{
+	ViewData["Title"] = "Index";
+}
+
+<h1>Lista de Produtos</h1>
+
+<alert mensagem="@TempData["mensagemProd"]"></alert>
+
+<a asp-action="cadastrar">Cadastrar Produto</a>
+<table class="table">
+    <tr>
+        <th>Codigo</th>
+        <th>Nome do Produto</th>
+        <th>Preço</th>
+        <th>Data de Criação</th>
+        <th>Favorito</th>
+        <th>Tamanho</th>
+        <td></td>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.NomeProduto</td>
+            <td>@item.Preco</td>
+            <td>@item.DataCadastro.ToShortDateString()</td>
+            <td>@(item.Favorito?"Sim":"Não")</td>
+            <td>@item.Tamanho</td>
+            <td>
+                <a asp-action="editar" asp-route-id="@item.Id" class="btn btn-sm btn-primary">Editar Produto</a>
+                <button onclick="key.value = @item.Id" type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Remover Produto
+                </button>
+            </td>
+        </tr>
+    }
+</table>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmação</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Deseja realmente apagar o Produto?
+            </div>
+            <div class="modal-footer">
+                <form asp-action="excluir">
+                    <input type="hidden" name="id" id="key" />
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                    <button type="submit" class="btn btn-danger">Sim</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+﻿@model Produto
+
+@{
+    ViewData["Title"] = "Cadastrar";
+}
+
+<h1>Cadastrar Produto</h1>
+
+
+@if (TempData["mensagemProd"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["mensagemProd"]
+    </div>
+}
+
+<a asp-action="Index">Lista de Produtos</a>
+
+<form asp-action="cadastrar">
+    <partial name="_Form"/>
+    
+    <botao-cad></botao-cad>
+
+</form>

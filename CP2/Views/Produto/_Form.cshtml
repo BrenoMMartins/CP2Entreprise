@@ -1,0 +1,24 @@
+﻿@model Produto
+
+<div class="mb-3">
+    <label asp-for="NomeProduto"></label>
+    <input asp-for="NomeProduto" class="form-control" />
+</div>
+<div class="mb-3">
+    <label asp-for="Preco"></label>
+    <input asp-for="Preco" class="form-control" />
+</div>
+<div class="mb-3">
+    <label asp-for="DataCadastro"></label>
+    <input asp-for="DataCadastro" class="form-control" />
+</div>
+<div class="mb-3">
+    <label asp-for="Tamanho"></label>
+    <select asp-for="Tamanho" asp-items="@Html.GetEnumSelectList<Tamanho>()" class="form-select">
+        <option>Selecione</option>
+    </select>
+</div>
+<div class="mb-3">
+    <input asp-for="Favorito" />
+    <label asp-for="Favorito"></label>
+</div>
